@@ -75,7 +75,7 @@ shapiro_test(resid(model_weight_post$modele)) # Normalité des résidus (Shapiro
 #### VAT post intervention ####
 
 # Modèle + résultats du modèle
-model_vat_post <- lmer_reg(data_post_itt, "Masse_Gras_Androide_Viscerale", "tx + age + sex + seq + (1|nomat)", digits_results = 0)
+model_vat_post <- lmer_reg(data_post_itt, "Masse_Gras_Androide_Viscerale", "tx + age + sex + seq + bmi + (1|nomat)", digits_results = 0)
 
 # Validation des hypothèses du modèle
 plot(influence(lmer(as.formula(paste("Masse_Gras_Androide_Viscerale", "~", "tx + age + sex + seq + (1|nomat)")),
@@ -138,5 +138,6 @@ results_reg <- rbind(model_compliance$results_reg,
 
 
 write.xlsx(results_reg[, c("Outcome", "NAD_mean_sem", "CFG_mean_sem", "CFG_NAD_mean_ci_abs", "CFG_NAD_mean_ci_rel", "p_value")], file = "Table S2.xlsx")
+
 
 
